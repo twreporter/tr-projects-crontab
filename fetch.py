@@ -13,8 +13,7 @@ from StringIO import StringIO
 reload(sys)
 sys.setdefaultencoding("utf-8")
 
-_time = datetime.now().strftime("%Y-%m-%d %H:%M");
-logging.basicConfig(filename='/tmp/log/fetch-' + _time + '.log',level=logging.INFO)
+logging.basicConfig(filename='/tmp/log/fetch.log',level=logging.INFO)
 
 logging.info('fetch articles from atavist')
 
