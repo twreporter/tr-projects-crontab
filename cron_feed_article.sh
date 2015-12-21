@@ -4,7 +4,7 @@
 file_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd $file_path
 echo 'fetching articles'
-sudo ./fetch.py
+./fetch.py
 echo 'making rss'
 /usr/bin/env perl rss.pl
 echo 'update articles'

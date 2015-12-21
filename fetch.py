@@ -14,13 +14,13 @@ reload(sys)
 sys.setdefaultencoding("utf-8")
 
 _time = datetime.now().strftime("%Y-%m-%d %H:%M");
-logging.basicConfig(filename='/var/log/fetch-' + _time + '.log',level=logging.INFO)
+logging.basicConfig(filename='/tmp/log/fetch-' + _time + '.log',level=logging.INFO)
 
 logging.info('fetch articles from atavist')
 
 buffer = StringIO()
 
-api = 'https://atavist.com/api/public/library.php?organization_id=60826&paginationLimit=30'
+api = 'https://atavist.com/api/public/library.php?organization_id=60826&paginationLimit=50'
 target_folder = '/tmp/twreporters/articles/'
 
 logging.info('api: %s ', api);
