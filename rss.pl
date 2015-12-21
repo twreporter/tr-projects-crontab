@@ -21,6 +21,7 @@ $rss->image(
 
 my $api = decode_json(get('https://www.twreporter.org/api/article?max_results=100&sort=-lastUpdate'));
 for (@{ $api->{_items} }) {
+    $_->{story_link} =~ s/\s//g;
     $rss->add_item(
         title => $_->{title},
         description => $_->{excerpt},
