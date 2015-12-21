@@ -22,7 +22,13 @@ buffer = StringIO()
 api = 'https://atavist.com/api/public/library.php?organization_id=60826&paginationLimit=50'
 target_folder = '/tmp/twreporters/articles/'
 
-logging.info('api: %s ', api);
+fnUpdateMapping = '/tmp/twreporter/mapping.csv'
+if os.path.isfile(fnUpdateMapping):
+    updateMapping = json.load(open(fnUpdateMapping))
+else:
+    updateMapping = {}
+
+logging.info('api: %s ', api)
 replace = [{
             # js & css files
             "orig": "https://twreporter.atavist.com/view/", 
@@ -49,12 +55,19 @@ c.perform()
 result = buffer.getvalue()
 records = json.loads(result, encoding="utf-8")
 
-logging.debug('records from api: %s', json.dumps(records));
+logging.debug('records from api: %s', json.dumps(records))
 
 for i in records['stories']:
+    aid = str(i['atavist_id'])
+    lastUpdate = int(i['lastUpdate'])
+    lastUpdateRecord = updateMapping.get(aid, 0)
+    if (lastUpdate == lastUpdateRecord):
+        logging.debug('skip record: %s', json.dumps(i))
+        continue
+    updateMapping[aid] = lastUpdate
     pageBuffer = StringIO()
     fileName = i['slug']
-    logging.info('get file: %s', fileName);
+    logging.info('get file: %s', fileName)
     fo = open(target_folder + fileName, "w")
     cc.setopt(cc.URL, i['url'])
     cc.setopt(cc.WRITEDATA, pageBuffer)
@@ -93,6 +106,8 @@ for i in records['stories']:
     fo.close()
     # print(body)
 
-logging.info('fetching completed');
+logging.info('fetching completed')
 cc.close()
 c.close()    
+
+json.dump(updateMapping, open(fnUpdateMapping, 'w'))
