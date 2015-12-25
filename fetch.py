@@ -19,10 +19,10 @@ logging.info('fetch articles from atavist')
 
 buffer = StringIO()
 
-api = 'https://atavist.com/api/public/library.php?organization_id=60826&paginationLimit=50'
+api = 'https://atavist.com/api/public/library.php?organization_id=60826&paginationLimit=100'
 target_folder = '/tmp/twreporters/articles/'
 
-fnUpdateMapping = '/tmp/twreporter/mapping.csv'
+fnUpdateMapping = '/tmp/twreporters/mapping.csv'
 if os.path.isfile(fnUpdateMapping):
     updateMapping = json.load(open(fnUpdateMapping))
 else:
