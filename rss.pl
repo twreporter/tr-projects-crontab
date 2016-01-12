@@ -19,7 +19,7 @@ $rss->image(
     link => "https://www.twreporter.org/",
 );
 
-my $api = decode_json(get('https://www.twreporter.org/api/article/?where={"tags":{"$in":["hp-projects","review","feature"]}}&max_results=100&sort=-lastUpdate'));
+my $api = decode_json(get('https://www.twreporter.org/api/article/?where={"tags":{"$in":["hp-projects","review","feature","photo-reviews","photo-features"]}}&max_results=100&sort=-lastUpdate'));
 for (@{ $api->{_items} }) {
     $_->{story_link} =~ s/\s//g;
     $_->{title} =~ s/[\x00-\x19]//g; # strip control characters
