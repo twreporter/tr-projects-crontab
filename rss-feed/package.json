@@ -1,0 +1,30 @@
+{
+  "name": "rss-feed",
+  "version": "1.0.0",
+  "description": "rss feed generator",
+  "main": "rss.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twreporter/tr-projects-crontab.git"
+  },
+  "keywords": [
+    "twreporter",
+    "rss",
+    "feed",
+    "generator"
+  ],
+  "author": "nickli",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/twreporter/tr-projects-crontab/issues"
+  },
+  "homepage": "https://github.com/twreporter/tr-projects-crontab#readme",
+  "dependencies": {
+    "axios": "^0.16.2",
+    "lodash.get": "^4.4.2",
+    "rss": "^1.2.2"
+  }
+}
